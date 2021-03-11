@@ -1,0 +1,1 @@
+export default function getProductByName(productName: string, limit: number) {}

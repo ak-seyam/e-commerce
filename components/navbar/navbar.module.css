@@ -1,0 +1,187 @@
+.navbar {
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    width           : 100%;
+    padding         : 32px 32px;
+    position        : fixed;
+    height          : 60px;
+    top             : 0;
+    z-index         : 10;
+    background-color: var(--background-primary);
+    transition: 0.2s;
+}
+
+.navbar.active {
+    background-color: var(--background-secondary);
+    color: var(--background-primary)
+}
+
+.search-container {
+    position: relative;
+    margin  : 16px;
+    color   : var(--foreground-input-text);
+}
+
+.text-container {
+    font-size       : 1em;
+    border          : none;
+    border-radius   : 8px;
+    height          : 32px;
+    padding         : calc(var(--search-padding) + 4px) calc(var(--search-padding) * 2.5);
+    outline         : none;
+    box-shadow      : 4px 4px 10px #00000020;
+    background-color: #fefefe;
+    overflow-x      : hidden;
+    transition      : 0.3s;
+    position        : absolute;
+    top             : 50%;
+    transform       : translateY(-65%);
+    width           : 100%;
+}
+
+.text-container input[type="text"] {
+    cursor    : text;
+    border    : none;
+    box-shadow: none;
+    outline   : none;
+    width     : 100%;
+    background: transparent;
+    transform: translateY(-60%);
+    position : absolute;
+    color: #000;
+}
+
+.search-container label {
+    position  : absolute;
+    left      : 0;
+    top       : 50%;
+    transform : translateY(-50%);
+    padding   : 0 calc(var(--search-padding) * 2.5);
+    transition: 0.3s;
+    font-size : 1em;
+    pointer-events: none;
+}
+
+
+.search-container input[type="text"]:focus+.elements>label,
+.search-container input[type="text"]:valid+.elements>label {
+    opacity  : 0;
+    transform: translateY(-80%);
+}
+
+.search-container input[type="text"]:focus+.elements>.search-icon,
+.search-container input[type="text"]:valid+.elements>.search-icon {
+    transform: translateY(-50%);
+    opacity  : 1;
+}
+
+.search-icon {
+    position  : absolute;
+    left      : 0;
+    top       : 50%;
+    transform : translateY(-80%);
+    opacity   : 0;
+    padding   : 0 var(--search-padding);
+    transition: 0.3s;
+}
+
+.aligned-element {
+    margin: 16px;
+}
+
+.card {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    font-size      : 1em;
+}
+
+.card span {
+    padding    : 0 16px;
+    font-weight: 500;
+}
+
+.card .icon {
+    font-size: 2em;
+}
+
+.best-deals-container {
+    position : relative;
+    width    : fit-content;
+    transform: translateY(-30%);
+}
+
+.best-deals-container .best {
+    font-size  : 1.2em;
+    top        : 0;
+    font-family: 'Anton', sans-serif;
+    cursor     : pointer;
+}
+
+.best-deals-container .deals {
+    position   : absolute;
+    font-size  : 2em;
+    top        : 40%;
+    left       : 10%;
+    color      : rgb(209, 98, 33);
+    font-family: 'Dancing Script', cursive;
+    cursor     : pointer;
+}
+
+.shopping-cart {
+    font-size: 1.5em;
+    cursor   : pointer;
+}
+
+.account {
+    font-size: 1.5em;
+}
+
+.search-results {
+    background-color: #fff;
+    width           : 100%;
+    position        : absolute;
+    box-shadow      : 0px 10px 10px #00000020;
+    padding         : 16px;
+    transition      : 0.1s;
+}
+
+.search-results * {
+    padding      : 8px;
+    cursor       : pointer;
+    border-radius: 4px;
+}
+
+.search-results *:hover {
+    background-color: #c3c793;
+    color           : #fefefe;
+    font-weight     : 600;
+}
+
+.account-service {
+    display       : flex;
+    flex-direction: column;
+    cursor        : pointer;
+}
+
+.cart-container {
+    position: relative;
+}
+
+.cart-items-count {
+    position        : absolute;
+    background-color: #507DBC;
+    padding         : 4px;
+    height          : 17px;
+    width           : 17px;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    border-radius   : 50%;
+    font-size       : 10px;
+    top             : 10%;
+    right           : 10%;
+    font-weight     : 600;
+    color           : #fefefe;
+}
