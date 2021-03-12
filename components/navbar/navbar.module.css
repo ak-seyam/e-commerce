@@ -9,12 +9,12 @@
     top             : 0;
     z-index         : 10;
     background-color: var(--background-primary);
-    transition: 0.2s;
+    transition      : 0.2s;
 }
 
 .navbar.active {
     background-color: var(--background-secondary);
-    color: var(--background-primary)
+    color           : var(--background-primary)
 }
 
 .search-container {
@@ -30,7 +30,7 @@
     height          : 32px;
     padding         : calc(var(--search-padding) + 4px) calc(var(--search-padding) * 2.5);
     outline         : none;
-    box-shadow      : 4px 4px 10px #00000020;
+    box-shadow      : var(--shadow);
     background-color: #fefefe;
     overflow-x      : hidden;
     transition      : 0.3s;
@@ -47,19 +47,19 @@
     outline   : none;
     width     : 100%;
     background: transparent;
-    transform: translateY(-60%);
-    position : absolute;
-    color: #000;
+    transform : translateY(-60%);
+    position  : absolute;
+    color     : #000;
 }
 
 .search-container label {
-    position  : absolute;
-    left      : 0;
-    top       : 50%;
-    transform : translateY(-50%);
-    padding   : 0 calc(var(--search-padding) * 2.5);
-    transition: 0.3s;
-    font-size : 1em;
+    position      : absolute;
+    left          : 0;
+    top           : 50%;
+    transform     : translateY(-50%);
+    padding       : 0 calc(var(--search-padding) * 2.5);
+    transition    : 0.3s;
+    font-size     : 1em;
     pointer-events: none;
 }
 
@@ -184,4 +184,46 @@
     right           : 10%;
     font-weight     : 600;
     color           : #fefefe;
+}
+
+.container {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+}
+
+.categories {
+    margin-top     : 72px;
+    display        : flex;
+    justify-content: space-evenly;
+    width          : 100%;
+}
+
+.category-button {
+    margin          : 8px;
+    padding         : 8px;
+    width           : 120px;
+    display         : flex;
+    justify-content : center;
+    border-radius   : 16px;
+    cursor          : pointer;
+    color           : var(--background-primary);
+    background-color: var(--background-secondary);
+    box-shadow      : var(--shadow);
+}
+
+.category-button.hovered {
+    border-radius: 16px 16px 0 0;
+    margin-bottom: 0;
+}
+
+.categories-items {
+    background-color: var(--background-secondary);
+    color           : var(--background-primary);
+    width           : 100%;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    align-items     : center;
+    padding         : 16px;
 }

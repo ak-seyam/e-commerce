@@ -11,7 +11,8 @@
   --background-primary: #F4F1BB;
   --background-secondary: #353535;
   --background-input-text: #fefefe;
-  --foreground-input-text: #565658
+  --foreground-input-text: #565658;
+  --shadow: 4px 4px 10px #00000020;
 }
 
 body {
