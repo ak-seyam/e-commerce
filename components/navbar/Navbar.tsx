@@ -39,27 +39,29 @@ export default function NavBar() {
                 return true
             }
         }).map(item => item.listItems)
-        setCategoryItems(_listItem)
+        setCategoryItems(_listItem[0])
         handleCategoryMouseOver(categoryName)
     }
 
     function handleCategoryMouseOver(id: string) {
-        // get categories by id categories
-        // get all items inside categories
-        // search if id equals id  set the code below
-        // else make classnames category button only without hovered
-        
         const categoriesContainer = document.querySelector('#categories')
         const _categories = Array.from(categoriesContainer.children)
+
         _categories.forEach(cat => {
-            // console.log("id is",cat.id);
-            if (cat.id === id){
+            console.log('categories', cat.id, id);
+
+            if (cat.id === id) {
                 cat.className = `${styles["category-button"]} ${styles["hovered"]}`
             } else {
                 cat.className = `${styles["category-button"]}`
             }
         })
         // const cat = document.querySelector(`#${id}`)
+    }
+
+    function handleCategoryItemsMouseLeave() {
+        setCategoryItems([])
+        handleCategoryMouseOver(undefined)
     }
 
     return (
@@ -124,16 +126,14 @@ export default function NavBar() {
                 })}
             </section>
             <div style={{ display: categoryItems.length ? "block" : "none" }}
-                className={`${styles["categories-items"]}`}>
+                className={`${styles["categories-items"]}`}
+                onMouseLeave={() => handleCategoryItemsMouseLeave()} onMouseOver={() => handleCategoryMouseOver(
+                    categories.filter(category => {
+                        return JSON.stringify(category.listItems) === JSON.stringify(categoryItems)
+                    })[0].name)}>
                 {categoryItems.map(item => {
-                    return (<div key={item} onMouseOver={() => handleCategoryMouseOver(
-                        categories.filter(category => {
-                            console.log('list items', category.listItems);
-                            console.log('current category item', categoryItems[0]);
-                            console.log(JSON.stringify(category.listItems) === JSON.stringify(categoryItems[0]));
-                            return JSON.stringify(category.listItems) === JSON.stringify(categoryItems[0])
-                        })[0].name
-                    )}>{item}</div>)
+                    console.log('item is', item);
+                    return (<div key={item}>{item}</div>)
                 })}
             </div>
         </nav>)
