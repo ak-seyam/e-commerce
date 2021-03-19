@@ -229,4 +229,5 @@
     padding         : 16px;
     top             : 120px;
     position        : absolute;
+    z-index         : 10;
 }

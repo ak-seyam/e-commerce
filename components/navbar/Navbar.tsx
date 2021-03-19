@@ -86,7 +86,7 @@ export default function NavBar() {
                         </div>
                         <div style={{ padding: searchResults.length ? "16px" : "0px" }} className={`${styles["search-results"]}`}>
                             {searchResults.map(res => {
-                                return <div>{res}</div>
+                                return <div key={res}>{res}</div>
                             })}
                         </div>
                     </div>
@@ -117,12 +117,12 @@ export default function NavBar() {
             </section>
             <section id={"categories"} className={`${styles["categories"]}`}>
                 {loadingCategories ? "loading" : categories.map(category => {
-                    return (<>
+                    return (
                         <div key={category.name} id={category.name} className={`${styles["category-button"]}`}
                             onMouseOver={() => handleMouseOver(category.name)}>
                             {category.name}
                         </div>
-                    </>)
+                    )
                 })}
             </section>
             <div style={{ display: categoryItems.length ? "block" : "none" }}
