@@ -1,31 +1,45 @@
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import getCategories from "../../controller/category/getCategories"
+import BestDeals from "./BestDeals"
 import styles from "./navbar.module.css"
 import search from "./search"
+import SearchBar from "./searchbar"
 
 export default function NavBar() {
-    const [searchResults, setSearchResults] = useState([])
     const [navbarActive, setNavbarActive] = useState(false)
     const [loadingCategories, setLoadingCategories] = useState(false)
     const [categories, setCategories] = useState([])
     const [categoryItems, setCategoryItems] = useState([])
+    const fabRef = useRef(null)
+    const fabContentRef = useRef(null)
+    const bestRef = useRef(null)
+    // const searchbarRef = useRef(null)
 
-    // TODO add cart state
-
-    const handleSearchTermTyped = (e) => {
-        setSearchResults(search(e.target.value))
-        console.log("search results are", searchResults);
+    const handleFabFocus = () => {
+        fabRef.current.className = `${styles["fab"]} ${styles["focused"]}`
+        fabContentRef.current.className = `${styles["fab-content"]} ${styles["focused"]}`
     }
-
+    const handleFabBlur = () => {
+        const sb = document.getElementById("search-bar")
+        if (document.activeElement !== sb) {
+            fabRef.current.className = `${styles["fab"]} ${styles["blurred"]}`
+            fabContentRef.current.className = `${styles["fab-content"]} ${styles["blurred"]}`
+        }
+    }
+    // TODO add cart state
     useEffect(() => {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 60) {
-                setNavbarActive(true)
-            } else {
-                setNavbarActive(false)
-            }
-        })
+        if (!window.matchMedia("(max-width: 700px)").matches) {
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 60) {
+                    setNavbarActive(true);
+                    bestRef.current.style.color = "#F4F1BB"
+                } else {
+                    setNavbarActive(false)
+                    bestRef.current.style.color = "#000000"
+                }
+            })
+        }
         const _getCategories = async () => {
             setCategories(await getCategories())
             setLoadingCategories(false)
@@ -73,29 +87,11 @@ export default function NavBar() {
                     height="70px"
                     width="70px"
                 />
-                <form style={{ width: "100%" }}>
-                    <div className={styles["search-container"]} >
-                        <div className={styles["text-container"]}>
-                            <input onChange={handleSearchTermTyped} id="search" type="text" name="search-term" required></input>
-                            <div className={`${styles["elements"]}`}>
-                                <label htmlFor="search">{"Search"}</label>
-                                <div className={`${styles["search-icon"]}`}>
-                                    <i className={`fas fa-search`}></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{ padding: searchResults.length ? "16px" : "0px" }} className={`${styles["search-results"]}`}>
-                            {searchResults.map(res => {
-                                return <div key={res}>{res}</div>
-                            })}
-                        </div>
-                    </div>
-                </form>
+                <SearchBar />
                 <div style={{ width: "120px" }}>
-                    <div className={`${styles["aligned-element"]} ${styles["best-deals-container"]} `}>
-                        <span className={`${styles["best"]}`}>Best</span>
-                        <span className={`${styles["deals"]}`}>Deals</span>
-                    </div>
+                    <a style={{ textDecoration: "none" }} href="#best-deals">
+                        <BestDeals bestRef={bestRef} />
+                    </a>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
                     <div className={`${styles["aligned-element"]} ${styles["account"]}`}>
@@ -135,6 +131,20 @@ export default function NavBar() {
                     console.log('item is', item);
                     return (<div key={item}>{item}</div>)
                 })}
+            </div>
+            <div className={`${styles["nav-mob"]}`}>
+                <Image width="50" height="50" src="/logo.png" />
+                <div ref={fabRef} tabIndex={0} onClick={handleFabFocus} onMouseLeave={handleFabBlur} className={`${styles["fab"]}`}>
+                    <div ref={fabContentRef} className={`${styles["fab-content"]}`}>
+                        <SearchBar zIndex={1500} />
+                        <div className={styles["fab-menu"]}>
+                            {loadingCategories ? "Loading..." : ""}
+                            {categories.map(cat => {
+                                return <div key={cat.name}>{cat.name}</div>
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>)
 }

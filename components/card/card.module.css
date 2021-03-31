@@ -1,0 +1,25 @@
+.container {
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 250px;
+    width: 250px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.info {
+    background-color: var( --background-secondary);
+    color: var(--background-primary);
+    height: 60px;
+    width: 100%;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Anton', sans-serif;
+    padding: 16px;
+}
