@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import CardsContainer from "../components/cardsContainer/cardsContainer"
 import Drawer from "../components/common/Drawer/drawer"
 import CommonLayout from "../components/common/layout"
@@ -7,6 +7,7 @@ import InsideLines from "../components/hocs/InsideLines"
 import BestDeals from "../components/navbar/BestDeals"
 import { getBestSellingProducts } from "../controller/product/Product"
 import Product from "../model/Product/Product"
+import { ClickedItemColorContext } from "./_app"
 export default function Landing() {
   const [bestSellingProducts, setBestSellingProducts] = useState<Array<Product> | undefined>(undefined)
   const [loadingProducts, setLoadingProducts] = useState(false)

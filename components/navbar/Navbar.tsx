@@ -17,10 +17,13 @@ export default function NavBar() {
     // const searchbarRef = useRef(null)
 
     const handleFabFocus = () => {
+        console.log("clicked focus");
         fabRef.current.className = `${styles["fab"]} ${styles["focused"]}`
         fabContentRef.current.className = `${styles["fab-content"]} ${styles["focused"]}`
     }
     const handleFabBlur = () => {
+        console.log("clicked blur");
+
         const sb = document.getElementById("search-bar")
         if (document.activeElement !== sb) {
             fabRef.current.className = `${styles["fab"]} ${styles["blurred"]}`
@@ -33,10 +36,12 @@ export default function NavBar() {
             window.addEventListener("scroll", () => {
                 if (window.scrollY > 60) {
                     setNavbarActive(true);
-                    bestRef.current.style.color = "#F4F1BB"
+                    if (bestRef.current)
+                        bestRef.current.style.color = "#F4F1BB"
                 } else {
                     setNavbarActive(false)
-                    bestRef.current.style.color = "#000000"
+                    if (bestRef.current)
+                        bestRef.current.style.color = "#000000"
                 }
             })
         }
@@ -142,6 +147,16 @@ export default function NavBar() {
                             {categories.map(cat => {
                                 return <div key={cat.name}>{cat.name}</div>
                             })}
+                        </div>
+                        <div className={`${styles["bottom"]}`}>
+                            <div className={`${styles["account-service"]}`}>
+                                <span style={{ fontSize: "12px" }}>Login</span>
+                                <b>MyAccount</b>
+                            </div>
+                            <div className={`${styles["account-service"]}`}>
+                                <span style={{ fontSize: "12px" }}>Your Cart</span>
+                                <b>Items</b>
+                            </div>
                         </div>
                     </div>
                 </div>

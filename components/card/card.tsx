@@ -1,5 +1,6 @@
 import styles from "./card.module.css"
 import Image from "next/image"
+import { MouseEventHandler } from "react";
 
 
 interface CardProps {
@@ -7,13 +8,14 @@ interface CardProps {
     name: string,
     price: number,
     oldPrice?: number,
-    currency: string
+    currency: string,
+    onClick: MouseEventHandler<HTMLDivElement>
 }
 
 
-const Card: React.FC<CardProps> = ({ imageURL, name, price, currency, oldPrice }) => {
+const Card: React.FC<CardProps> = ({ imageURL, name, price, currency, oldPrice, onClick }) => {
     return (
-        <div className={`${styles["container"]}`}>
+        <div onClick={onClick} className={`${styles["container"]}`}>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
                 <Image width={150} height={150} src={imageURL} alt={name} />
             </div>

@@ -237,7 +237,7 @@
     display: none;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
     .navbar {
         display: none;
     }
@@ -272,16 +272,17 @@
 }
 
 .fab.focused {
-    height : 500px;
-    width  : 500px;
+    height : 80vh;
+    width  : 90vw;
     z-index: 1000;
     padding: 36px;
 }
 
 .fab-content {
-    display: none;
-    opacity: 0;
-    color  : var(--background-primary);
+    display : none;
+    opacity : 0;
+    color   : var(--background-primary);
+    position: relative;
 }
 
 .fab-content.focused {
@@ -292,9 +293,26 @@
 }
 
 .fab-menu * {
-    position: relative;
-    padding : 16px;
-    top     : 20px;
-    cursor  : pointer;
+    position  : relative;
+    padding   : 16px;
+    top       : 20px;
+    cursor    : pointer;
     transition: 0.1s;
+}
+
+.fab .bottom {
+    position       : absolute;
+    bottom         : 0;
+    z-index        : 666;
+    width          : 100%;
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+}
+
+.fab .bottom .account-service {
+    color           : var(--background-secondary);
+    background-color: #fefefe;
+    border-radius   : 4px;
+    padding         : 4px 8px;
 }
