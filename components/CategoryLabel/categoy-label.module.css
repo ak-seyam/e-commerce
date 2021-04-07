@@ -1,0 +1,35 @@
+.category-label {
+    cursor          : pointer;
+    margin-top      : 16px;
+    margin-right    : 8px;
+    display         : flex;
+    background-color: #fff;
+    color           : #000;
+    padding         : 4px;
+    border-radius   : 100px;
+    align-items     : center;
+    box-shadow      : var(--shadow);
+    transition      : 0.3s;
+}
+
+.category-label .icon-area {
+    display         : flex;
+    background-color: #000;
+    color           : #fff;
+    padding         : 8px;
+    justify-content : center;
+    align-items     : center;
+    border-radius   : 13px;
+    height          : 27px;
+    width           : 27px;
+    margin-right    : 6px;
+    font-size       : 15px;
+}
+
+.category-label .text-area {
+    margin-right: 6px;
+}
+
+.category-label:hover {
+    transform: translateY(-15%);
+}

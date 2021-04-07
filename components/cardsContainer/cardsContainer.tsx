@@ -5,6 +5,7 @@ import { ClickedItemContext, ClickedItemColorContext } from "../../pages/_app";
 import Card from "../card/card";
 import styles from "./cardsContainer.module.css"
 import Link from "next/link"
+import { isDark, lighen } from "../../utils/DarkChecker";
 
 type CardsConteinerProps = {
     products: Array<Product>
@@ -30,7 +31,7 @@ const CardsContainer: React.FC<CardsConteinerProps> = ({ products }) => {
                                         key={product.name}
                                         oldPrice={product.oldPrice}
                                         onClick={() => {
-                                            productColorsContexValues.changeImageColors(data);
+                                            productColorsContexValues.changeImageColors([isDark(lighen(data[0])), ...data]);
                                             productContext.setProduct(product);
                                         }}
                                     />

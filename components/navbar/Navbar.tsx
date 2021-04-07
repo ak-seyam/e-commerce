@@ -11,19 +11,20 @@ export default function NavBar() {
     const [loadingCategories, setLoadingCategories] = useState(false)
     const [categories, setCategories] = useState([])
     const [categoryItems, setCategoryItems] = useState([])
+    const [menuFocused, setMenuFocused] = useState(false)
     const fabRef = useRef(null)
     const fabContentRef = useRef(null)
     const bestRef = useRef(null)
     // const searchbarRef = useRef(null)
 
     const handleFabFocus = () => {
+        setMenuFocused(true);
         console.log("clicked focus");
         fabRef.current.className = `${styles["fab"]} ${styles["focused"]}`
         fabContentRef.current.className = `${styles["fab-content"]} ${styles["focused"]}`
     }
     const handleFabBlur = () => {
-        console.log("clicked blur");
-
+        setMenuFocused(false)
         const sb = document.getElementById("search-bar")
         if (document.activeElement !== sb) {
             fabRef.current.className = `${styles["fab"]} ${styles["blurred"]}`
@@ -140,6 +141,7 @@ export default function NavBar() {
             <div className={`${styles["nav-mob"]}`}>
                 <Image width="50" height="50" src="/logo.png" />
                 <div ref={fabRef} tabIndex={0} onClick={handleFabFocus} onMouseLeave={handleFabBlur} className={`${styles["fab"]}`}>
+                    <div style={{ fontSize: "18px", display: menuFocused ? "none" : "inline", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}><i className="fas fa-bars"></i></div>
                     <div ref={fabContentRef} className={`${styles["fab-content"]}`}>
                         <SearchBar zIndex={1500} />
                         <div className={styles["fab-menu"]}>
