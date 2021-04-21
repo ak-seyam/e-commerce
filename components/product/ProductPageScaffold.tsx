@@ -26,11 +26,14 @@ const ProductPageScaffold: React.FC<Props> = ({ product }) => {
                     <div className={`${styles["name"]}`}>{product.name}</div>
                     <div className={`${styles["desc"]}`}>{product.desc}</div>
                     {/* This is going to be for category cards*/}
-                    <div style={{ display: "flex" }}>
-                        {product.categories.map(cat => {
-                            const z = CategoryLabelBuilder(cat);
-                            return z;
-                        })}
+                    <div style={{ display: "flex" }} className={`${styles["categories-container"]}`}>
+                        {product.categories.map(cat => CategoryLabelBuilder(cat))}
+                    </div>
+                    <div className={`${styles["add-to-cart-container"]}`}>
+                        <span style={{fontSize: "26px"}}>Price: {product.price}{product.currency}</span>
+                        <br />
+                        <span>Add to cart</span>
+                        <i className="fas fa-shopping-cart"></i>
                     </div>
                 </div>
                 <div className={`${styles["area"]}`}>

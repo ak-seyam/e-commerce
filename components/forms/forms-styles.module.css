@@ -1,0 +1,47 @@
+.inp--label {
+  order: 1;
+  color: #adadad;
+  transform: translateY(150%);
+  transition: 0.2s;
+  height: 1rem;
+}
+
+.inp {
+  border-color: #adadad;
+  border-style: none none solid none;
+  outline: none;
+  padding: 8px;
+  font-size: 12px;
+  order: 2;
+  transition: 0.2s;
+}
+
+.inp::placeholder {
+  color: #adadad;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.error {
+  order: 3;
+  color: rgb(200, 0, 0);
+  font-size: 12px;
+}
+
+.inp:focus {
+  border-color: var(--background-secondary);
+}
+
+.inp:focus + .inp--label {
+  color: var(--background-secondary);
+  transform: translateY(0%);
+  font-size: 12px;
+}
+
+.inp:valid + .inp--label {
+  transform: translateY(0%);
+}

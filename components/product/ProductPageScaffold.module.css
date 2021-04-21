@@ -2,6 +2,7 @@
     display              : grid;
     grid-template-columns: 50% 50%;
     height               : 100%;
+    overflow             : hidden;
 }
 
 .product-img-container {
@@ -14,6 +15,7 @@
     align-items     : center;
     flex-direction  : column;
     box-shadow      : var(--shadow);
+    animation       : right-pan-animation 1s;
 }
 
 .product-img-container img {
@@ -51,9 +53,59 @@
     font-family  : 'Poppins', sans-serif;
     font-weight  : 700;
     margin-bottom: 40px;
+    animation    : name-desc-animation 0.5s;
 }
 
 .desc {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
+    animation  : name-desc-animation 0.5s;
+}
+
+.categories-container {
+    animation: categories-animations 1.5s
+}
+
+@keyframes right-pan-animation {
+    from {
+        transform: translateX(10%);
+        opacity  : 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity  : 1;
+    }
+}
+
+@keyframes name-desc-animation {
+    from {
+        transform: translateY(-10%);
+        opacity  : 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity  : 1;
+    }
+}
+
+@keyframes categories-animations {
+    from {
+        transform: translateY(10%);
+        opacity  : 0;
+    }
+
+    to {
+        transform: translateY();
+        opacity  : 1;
+    }
+}
+
+.add-to-cart-container {
+    cursor     : pointer;
+    align-self : flex-end;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    animation  : categories-animations 2s
 }

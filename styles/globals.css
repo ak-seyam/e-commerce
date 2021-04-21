@@ -5,10 +5,9 @@
   font-family: sans-serif;
 }
 
-
 :root {
   --search-padding: 16px;
-  --background-primary: #F4F1BB;
+  --background-primary: #f4f1bb;
   --background-secondary: #353535;
   --background-input-text: #fefefe;
   --foreground-input-text: #565658;
@@ -17,5 +16,24 @@
 
 body {
   background-color: var(--background-primary);
-  color: var(--background-secondary)
+  color: var(--background-secondary);
+}
+
+.button {
+  color: var(--background-primary);
+  background-color: var(--background-secondary);
+  border-radius: 8px;
+  border-style: none;
+  padding: 12px;
+  width: 100%;
+  margin-top: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: var(--background-secondary);
+  background-color: #f0b953;
+  transform: translateY(-10%);
+  box-shadow: var(--shadow);
 }

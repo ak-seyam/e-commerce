@@ -6,6 +6,7 @@ import Card from "../card/card";
 import styles from "./cardsContainer.module.css"
 import Link from "next/link"
 import { isDark, lighen as lighten } from "../../utils/DarkChecker";
+import { useRouter } from "next/router";
 
 type CardsConteinerProps = {
     products: Array<Product>
@@ -14,6 +15,7 @@ type CardsConteinerProps = {
 const CardsContainer: React.FC<CardsConteinerProps> = ({ products }) => {
     const productColorsContextValues = useContext(ClickedItemColorContext)
     const productContext = useContext(ClickedItemContext)
+    const router = useRouter()
     return (
         <div className={styles["container"]}>
             {products ? products.map(product => {
@@ -30,9 +32,10 @@ const CardsContainer: React.FC<CardsConteinerProps> = ({ products }) => {
                                         price={product.price}
                                         key={product.name}
                                         oldPrice={product.oldPrice}
-                                        onClick={() => {
+                                        onProductInfoClicked={() => {
                                             productColorsContextValues.changeImageColors([isDark(lighten(data[0])), ...data]);
                                             productContext.setProduct(product);
+                                            router.push(`/products/${product.name}`)
                                         }}
                                     />
                                 </Link>
