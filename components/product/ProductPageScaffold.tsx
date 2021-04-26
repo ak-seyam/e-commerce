@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/cart/cartSlice";
 import Product from "../../model/Product/Product";
 import { CategoryLabelBuilder } from "../CategoryLabel/CategoryLabelBuilder";
 import NavBar from "../navbar/Navbar";
@@ -10,6 +12,7 @@ interface Props {
 }
 
 const ProductPageScaffold: React.FC<Props> = ({ product }) => {
+    const dispatch = useDispatch()
     return (<>
         {product ? <>
             <Link href="/"><div style={{
@@ -30,9 +33,21 @@ const ProductPageScaffold: React.FC<Props> = ({ product }) => {
                         {product.categories.map(cat => CategoryLabelBuilder(cat))}
                     </div>
                     <div className={`${styles["add-to-cart-container"]}`}>
-                        <span style={{fontSize: "26px"}}>Price: {product.price}{product.currency}</span>
+                        <span style={{ fontSize: "26px" }}>Price: {product.price}{product.currency}</span>
                         <br />
-                        <span>Add to cart</span>
+                        <span onClick={() => {
+                            dispatch(
+                                addItem({
+                                    item: {
+                                        id: product.id,
+                                        amount: 1,
+                                        name: product.name,
+                                        price: product.price,
+                                        img: product.img
+                                    }
+                                })
+                            )
+                        }}>Add to cart!</span>
                         <i className="fas fa-shopping-cart"></i>
                     </div>
                 </div>

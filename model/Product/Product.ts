@@ -1,4 +1,5 @@
 type Product = {
+    id: string
     name: string,
     oldPrice?: number,
     price: number,

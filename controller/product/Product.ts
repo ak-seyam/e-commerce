@@ -2,6 +2,7 @@ import Product from "../../model/Product/Product";
 
 const products = [
     {
+        id: "1",
         name: "T-Shirt",
         price: 22,
         oldPrice: 32,
@@ -11,6 +12,7 @@ const products = [
         categories: ["clothing"]
     },
     {
+        id: "2",
         name: "Nike Shoes",
         price: 23,
         oldPrice: 30,
@@ -20,6 +22,7 @@ const products = [
         categories: ["sports", "clothing"]
     },
     {
+        id: "3",
         name: "Running Shoes",
         oldPrice: 30,
         price: 24,
@@ -29,6 +32,7 @@ const products = [
         categories: ["sports", "clothing"]
     },
     {
+        id: "4",
         name: "Hoddie",
         price: 60,
         oldPrice: 80,
@@ -38,6 +42,7 @@ const products = [
         categories: ["clothing"]
     },
     {
+        id: "5",
         name: "Green Hoddie",
         price: 60,
         oldPrice: 80,
@@ -47,6 +52,7 @@ const products = [
         categories: ["clothing"]
     },
     {
+        id: "6",
         name: "Orange T-Shirt",
         price: 20,
         oldPrice: 60,
@@ -56,6 +62,7 @@ const products = [
         categories: ["clothing"]
     },
     {
+        id: "7",
         name: "Women Shoes",
         price: 20,
         oldPrice: 60,
@@ -65,6 +72,7 @@ const products = [
         categories: ["clothing", "shoes"]
     },
     {
+        id: "8",
         name: "Sun glasses",
         price: 50,
         oldPrice: 70,
@@ -74,6 +82,7 @@ const products = [
         categories: ["accessories"],
     },
     {
+        id: "9",
         name: "IPhone X",
         price: 1000,
         oldPrice: 1200,

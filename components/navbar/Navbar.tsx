@@ -1,6 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import getCategories from "../../controller/category/getCategories";
+import { itemsCount } from "../../features/cart/selectors";
 import SigninForm from "../forms/singInForm";
 import Modal from "../Modal/Modal";
 import BestDeals from "./BestDeals";
@@ -18,6 +21,7 @@ export default function NavBar() {
   const fabContentRef = useRef(null);
   const bestRef = useRef(null);
   const [myModalShow, setMyModalShow] = useState(false);
+  const count = useSelector(itemsCount)
   // const searchbarRef = useRef(null)
 
   const handleFabFocus = () => {
@@ -90,9 +94,8 @@ export default function NavBar() {
   return (
     <nav className={`${styles["container"]}`}>
       <section
-        className={`${styles["navbar"]} ${
-          navbarActive ? styles["active"] : ""
-        }`}
+        className={`${styles["navbar"]} ${navbarActive ? styles["active"] : ""
+          }`}
       >
         <Image
           className={styles["aligned-element"]}
@@ -132,30 +135,32 @@ export default function NavBar() {
             <SigninForm />
           </Modal>
         </div>
-        <div className={`${styles["cart-container"]}`}>
-          <div
-            className={`${styles["aligned-element"]} ${styles["shopping-cart"]}`}
-          >
-            <i className="fas fa-shopping-cart"></i>
+        <Link href="/cart">
+          <div className={`${styles["cart-container"]}`}>
+            <div
+              className={`${styles["aligned-element"]} ${styles["shopping-cart"]}`}
+            >
+              <i className="fas fa-shopping-cart"></i>
+            </div>
+            <div className={`${styles["cart-items-count"]}`}>{count}</div>
           </div>
-          <div className={`${styles["cart-items-count"]}`}>0</div>
-        </div>
+        </Link>
       </section>
       <section id={"categories"} className={`${styles["categories"]}`}>
         {loadingCategories
           ? "loading"
           : categories.map((category) => {
-              return (
-                <div
-                  key={category.name}
-                  id={category.name}
-                  className={`${styles["category-button"]}`}
-                  onMouseOver={() => handleMouseOver(category.name)}
-                >
-                  {category.name}
-                </div>
-              );
-            })}
+            return (
+              <div
+                key={category.name}
+                id={category.name}
+                className={`${styles["category-button"]}`}
+                onMouseOver={() => handleMouseOver(category.name)}
+              >
+                {category.name}
+              </div>
+            );
+          })}
       </section>
       <div
         style={{ display: categoryItems.length ? "block" : "none" }}

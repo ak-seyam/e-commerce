@@ -26,7 +26,9 @@ const CardsContainer: React.FC<CardsConteinerProps> = ({ products }) => {
                             if (loading) { return <div>Loading</div> }
                             return (
                                 <Link href={`/product/${product.name}`}>
-                                    <Card name={product.name}
+                                  <Card 
+  productId={product.id}
+                                    name={product.name}
                                         currency={product.currency}
                                         imageURL={product.img}
                                         price={product.price}

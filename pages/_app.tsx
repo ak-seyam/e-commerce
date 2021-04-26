@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import React, { useState } from 'react'
+import { Provider } from 'react-redux'
 import Product from '../model/Product/Product'
 import '../styles/globals.css'
+import store from "../store"
 
 const defaultColorContextValues = {
   clickedImageColors: {},
@@ -43,7 +45,9 @@ function MyApp({ Component, pageProps }) {
           <link rel="preconnect" href="https://fonts.gstatic.com"></link>
           <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"></link>
         </Head>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </ClickedItemColorContext.Provider>
 
     </ClickedItemContext.Provider>
