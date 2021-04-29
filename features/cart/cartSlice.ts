@@ -31,9 +31,12 @@ const counterSlice = createSlice({
         (item) => item.id !== action.payload.item.id
       );
     },
+    setItems: (state, action) => {
+      state.items = action.payload;
+    },
   },
   initialState,
 });
 
-export const { addItem, removeItem } = counterSlice.actions;
+export const { addItem, removeItem, setItems } = counterSlice.actions;
 export default counterSlice.reducer;

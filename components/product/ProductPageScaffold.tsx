@@ -36,6 +36,9 @@ const ProductPageScaffold: React.FC<Props> = ({ product }) => {
                         <span style={{ fontSize: "26px" }}>Price: {product.price}{product.currency}</span>
                         <br />
                         <span onClick={() => {
+                            // add item to local storage
+                            // add item to state
+                            
                             dispatch(
                                 addItem({
                                     item: {

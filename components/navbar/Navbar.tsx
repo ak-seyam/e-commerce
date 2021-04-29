@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import getCategories from "../../controller/category/getCategories";
 import { itemsCount } from "../../features/cart/selectors";
 import SigninForm from "../forms/singInForm";
 import Modal from "../Modal/Modal";
 import BestDeals from "./BestDeals";
 import styles from "./navbar.module.css";
-import search from "./search";
 import SearchBar from "./searchbar";
+import { setItems } from "../../features/cart/cartSlice"
 
 export default function NavBar() {
   const [navbarActive, setNavbarActive] = useState(false);
@@ -22,7 +22,25 @@ export default function NavBar() {
   const bestRef = useRef(null);
   const [myModalShow, setMyModalShow] = useState(false);
   const count = useSelector(itemsCount)
+  const dispatch = useDispatch()
   // const searchbarRef = useRef(null)
+
+  const [localStorageProdsStr, setLocalStorageProdsStr] = useState("")
+  const [countFromLocalStorage, setCountFromLocalStorage] = useState(0)
+
+  useEffect(() => {
+    if (localStorage)
+      setLocalStorageProdsStr(localStorage.getItem("cart-items"))
+  }, [])
+
+  useEffect(() => {
+
+    if (localStorageProdsStr !== "") {
+      const products = JSON.parse(localStorageProdsStr)
+      setCountFromLocalStorage(products.length)
+      dispatch(setItems(products))
+    }
+  }, [localStorageProdsStr])
 
   const handleFabFocus = () => {
     setMenuFocused(true);
@@ -30,6 +48,7 @@ export default function NavBar() {
     fabRef.current.className = `${styles["fab"]} ${styles["focused"]}`;
     fabContentRef.current.className = `${styles["fab-content"]} ${styles["focused"]}`;
   };
+
   const handleFabBlur = () => {
     setMenuFocused(false);
     const sb = document.getElementById("search-bar");
@@ -142,7 +161,7 @@ export default function NavBar() {
             >
               <i className="fas fa-shopping-cart"></i>
             </div>
-            <div className={`${styles["cart-items-count"]}`}>{count}</div>
+            <div className={`${styles["cart-items-count"]}`}>{count == 0 ? countFromLocalStorage : count}</div>
           </div>
         </Link>
       </section>

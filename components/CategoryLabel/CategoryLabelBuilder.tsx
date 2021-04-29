@@ -10,11 +10,8 @@ const _categoryTag = {
 }
 
 export const categoryTag = (category: string) => {
-    console.log();
     const catUp = category.toUpperCase()
-    console.log(catUp);
     const ct = _categoryTag[catUp]
-    console.log("the tag is", ct);
     return ct;
 }
 
@@ -28,6 +25,5 @@ const CategoryLabelMap = {
 }
 
 export const CategoryLabelBuilder = (category: string): JSX.Element => {
-    console.log("called wth", category);
     return CategoryLabelMap[categoryTag(category)];
 }

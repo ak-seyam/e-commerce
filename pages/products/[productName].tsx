@@ -18,12 +18,9 @@ export default function ProductPage() {
             if (productName) {
                 if (typeof productName === "string")
                     window.document.title = productName;
-                console.log(productName);
                 if (!Array.isArray(productName)) {
-                    console.log(productName);
                     const prod = await getProductByName(productName)
-                    setProduct(prod)
-                    console.log(prod);
+                    setProduct(prod[0])
                 }
             }
         }

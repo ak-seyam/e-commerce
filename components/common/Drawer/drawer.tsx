@@ -4,7 +4,6 @@ import styles from "./drawer.module.css"
 export default function Drawer() {
     const [selectedPage, setSelectedPage] = useState(0)
     const handleIndicatorClicked = (index) => {
-        console.log(index);
 
         setSelectedPage(index)
     }

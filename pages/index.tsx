@@ -5,7 +5,7 @@ import Drawer from "../components/common/Drawer/drawer"
 import CommonLayout from "../components/common/layout"
 import InsideLines from "../components/hocs/InsideLines"
 import BestDeals from "../components/navbar/BestDeals"
-import { getBestSellingProducts } from "../controller/product/Product"
+import { getBestDealsProducts } from "../controller/product/Product"
 import Product from "../model/Product/Product"
 import { ClickedItemColorContext } from "./_app"
 export default function Landing() {
@@ -14,7 +14,7 @@ export default function Landing() {
 
   useEffect(() => {
     const getBSProds = async () => {
-      const prods = await getBestSellingProducts()
+      const prods = await getBestDealsProducts()
       setBestSellingProducts(prods)
       setLoadingProducts(false)
     }
@@ -26,7 +26,7 @@ export default function Landing() {
         <Drawer></Drawer>
         {loadingProducts ? "loading..." : ""}
         <InsideLines disblaLines id="best-deals">
-          <BestDeals fontSize="70px" />
+          <BestDeals fontSize={70} />
         </InsideLines>
         <CardsContainer products={bestSellingProducts} />
       </CommonLayout>
