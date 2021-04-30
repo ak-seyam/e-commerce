@@ -30,7 +30,7 @@ export default function NavBar() {
 
   useEffect(() => {
     if (localStorage)
-      setLocalStorageProdsStr(localStorage.getItem("cart-items"))
+      setLocalStorageProdsStr(localStorage.getItem("cart-items") ?? "")
   }, [])
 
   useEffect(() => {

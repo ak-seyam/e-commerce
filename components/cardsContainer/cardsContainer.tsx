@@ -7,7 +7,7 @@ import styles from "./cardsContainer.module.css";
 import Link from "next/link";
 import { isDark, lighen as lighten } from "../../utils/DarkChecker";
 import { useRouter } from "next/router";
-import { useAddingProduct } from "../../controller/cart/AddProduct";
+import { useAddingProduct } from "../../hooks/cart/AddProduct";
 
 type CardsContainerProps = {
   products: Array<Product>;

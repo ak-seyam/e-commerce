@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { stat } from "node:fs";
 
 export interface Item {
   name: string;
@@ -24,11 +25,18 @@ const counterSlice = createSlice({
   name: "counter",
   reducers: {
     addItem: (state, action: PayloadAction<CartActionPayload>) => {
-      state.items.push(action.payload.item);
+      const id = state.items.findIndex((element) => {
+        return element.id === action.payload.item.id;
+      });
+      if (id !== -1) {
+        state.items[id].amount++;
+      } else {
+        state.items.push(action.payload.item);
+      }
     },
-    removeItem: (state, action: PayloadAction<CartActionPayload>) => {
+    removeItem: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(
-        (item) => item.id !== action.payload.item.id
+        (item) => item.id !== action.payload
       );
     },
     setItems: (state, action) => {
