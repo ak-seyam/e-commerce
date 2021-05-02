@@ -7,7 +7,6 @@ import InsideLines from "../components/hocs/InsideLines"
 import BestDeals from "../components/navbar/BestDeals"
 import { getBestDealsProducts } from "../controller/product/Product"
 import Product from "../model/Product/Product"
-import { ClickedItemColorContext } from "./_app"
 export default function Landing() {
   const [bestSellingProducts, setBestSellingProducts] = useState<Array<Product> | undefined>(undefined)
   const [loadingProducts, setLoadingProducts] = useState(false)

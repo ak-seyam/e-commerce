@@ -1,7 +1,7 @@
 type Product = {
     id: string
     name: string,
-    oldPrice?: number,
+    oldprice?: number,
     price: number,
     currency: string,
     img: string,

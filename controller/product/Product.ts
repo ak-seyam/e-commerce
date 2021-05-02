@@ -11,7 +11,7 @@ export async function getBestDealsProducts(
   limit: number = 20
 ) {
   return CustomAxios.get(
-    `/products?category=bestdeals&_page=${page}&_limit=${limit}`
+    `/bestdeals`
   )
     .then((resp) => resp.data)
 }

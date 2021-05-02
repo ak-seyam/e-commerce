@@ -1,4 +1,17 @@
 {
+    "Samsung": [
+        {
+            "id": "20",
+            "name": "Galaxy S21",
+            "price": 500,
+            "currency": "$",
+            "img": "/galaxys21.webp",
+            "desc": "Qui officia aute sit Lorem culpa elit ad. Magna commodo dolor aute laborum culpa fugiat incididnt ea. Labore sit ex cillum esse irure adipisicing mollit Lorem. id anim excepteur adipisicing enim id. Nulla aute anim amet do exercitation aliquip. Elit nisi proident labore esse aute aute ad exercitation consequat. Irure amet anim velit et minim.",
+            "categories": [
+                "accessories"
+            ]
+        }
+    ],
     "bestdeals": [
         {
             "id": "1",
@@ -220,6 +233,17 @@
             "currency": "$",
             "img": "/iphonex.png",
             "desc": "Qui officia aute sit Lorem culpa elit ad. Magna commodo dolor aute laborum culpa fugiat incididunt ea. Labore sit ex cillum esse irure adipisicing mollit Lorem. id anim excepteur adipisicing enim id. Nulla aute anim amet do exercitation aliquip. Elit nisi proident labore esse aute aute ad exercitation consequat. Irure amet anim velit et minim.",
+            "categories": [
+                "mobile"
+            ]
+        },
+        {
+            "id": "20",
+            "name": "Galaxy S21",
+            "price": 500,
+            "currency": "$",
+            "img": "/galaxys21.webp",
+            "desc": "Qui officia aute sit Lorem culpa elit ad. Magna commodo dolor aute laborum culpa fugiat incididnt ea. Labore sit ex cillum esse irure adipisicing mollit Lorem. id anim excepteur adipisicing enim id. Nulla aute anim amet do exercitation aliquip. Elit nisi proident labore esse aute aute ad exercitation consequat. Irure amet anim velit et minim.",
             "categories": [
                 "mobile"
             ]

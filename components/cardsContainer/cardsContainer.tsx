@@ -22,6 +22,7 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ products }) => {
     <div className={styles["container"]}>
       {products
         ? products.map((product) => {
+          console.log("old price?", product.oldprice);
           return (
             <Palette key={product.id} format="hex" src={product.img} colorCount={4}>
               {({ data, loading, error }) => {
@@ -33,6 +34,7 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ products }) => {
                 }
                 return (
                   <Link href={`/product/${product.name}`}>
+
                     <Card
                       onAddToCart={() => {
                         productAdder(product)
@@ -43,7 +45,7 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ products }) => {
                       imageURL={product.img}
                       price={product.price}
                       key={product.name}
-                      oldPrice={product.oldPrice}
+                      oldPrice={product.oldprice}
                       onProductInfoClicked={() => {
                         productColorsContextValues.changeImageColors([
                           isDark(lighten(data[0])),

@@ -10,6 +10,7 @@ import BestDeals from "./BestDeals";
 import styles from "./navbar.module.css";
 import SearchBar from "./searchbar";
 import { setItems } from "../../features/cart/cartSlice"
+import { useRouter } from "next/router";
 
 export default function NavBar() {
   const [navbarActive, setNavbarActive] = useState(false);
@@ -23,6 +24,7 @@ export default function NavBar() {
   const [myModalShow, setMyModalShow] = useState(false);
   const count = useSelector(itemsCount)
   const dispatch = useDispatch()
+  const router = useRouter()
   // const searchbarRef = useRef(null)
 
   const [localStorageProdsStr, setLocalStorageProdsStr] = useState("")
@@ -117,16 +119,22 @@ export default function NavBar() {
           }`}
       >
         <Image
-          className={styles["aligned-element"]}
+          onClick={() => {
+            if (router.pathname !== '/')
+              router.push('/')
+          }}
+          className={`${styles["aligned-element"]} ${styles["logo"]}`}
           src="/logo.png"
           height="70px"
           width="70px"
         />
         <SearchBar />
         <div style={{ width: "120px" }}>
-          <a style={{ textDecoration: "none" }} href="#best-deals">
-            <BestDeals ref={bestRef} />
-          </a>
+          <Link href="/#best-deals">
+            <div>
+              <BestDeals ref={bestRef} />
+            </div>
+          </Link>
         </div>
         <div
           style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
@@ -198,7 +206,7 @@ export default function NavBar() {
       >
         {categoryItems.map((item) => {
           console.log("item is", item);
-          return <div key={item}>{item}</div>;
+          return <Link href={`/categories/${item}`}><div style={{ cursor: "pointer" }} key={item}>{item}</div></Link>;
         })}
       </div>
       <div className={`${styles["nav-mob"]}`}>
