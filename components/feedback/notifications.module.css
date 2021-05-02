@@ -1,0 +1,10 @@
+.container {
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 24px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}

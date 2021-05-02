@@ -5,6 +5,7 @@ export const useFetcher = (
   url: string
 ): [any[], boolean, string, CallableFunction] => {
   const [result, setResult] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
@@ -12,9 +13,12 @@ export const useFetcher = (
       try {
         const data = await axios.get(url).then((resp) => resp.data);
         setResult(data);
+        setLoading(false);
         setError("");
       } catch (e) {
         setError(e.message);
+        setLoading(false);
+        setResult([]);
       }
     };
     _fetcher();
@@ -24,5 +28,5 @@ export const useFetcher = (
     return error.length !== 0;
   };
 
-  return [result, result.length === 0, error, hasError];
+  return [result, loading, error, hasError];
 };

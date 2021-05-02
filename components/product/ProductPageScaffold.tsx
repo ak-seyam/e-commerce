@@ -1,21 +1,31 @@
 import Link from "next/link";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../features/cart/cartSlice";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import Product from "../../model/Product/Product";
 import { CategoryLabelBuilder } from "../CategoryLabel/CategoryLabelBuilder";
-import NavBar from "../navbar/Navbar";
+import Feedback from "../feedback/Feedback";
 import styles from "./ProductPageScaffold.module.css";
+import { useAddingProduct } from "../../hooks/cart/AddProduct";
 
 interface Props {
     product: Product
 }
 
 const ProductPageScaffold: React.FC<Props> = ({ product }) => {
-    const dispatch = useDispatch()
+    const router = useRouter()
+    const productAdder = useAddingProduct()
+    const [feedbackShow, setFeedBackShow] = useState(false)
+
+    const addToCartFeedbackHandler = () => {
+        setFeedBackShow(true);
+        setTimeout(() => {
+            setFeedBackShow(false)
+        }, 2000);
+    }
+
     return (<>
         {product ? <>
-            <Link href="/"><div style={{
+            <div style={{
                 position: "fixed",
                 top: 0,
                 left: 0,
@@ -23,7 +33,11 @@ const ProductPageScaffold: React.FC<Props> = ({ product }) => {
                 fontSize: "32px",
                 margin: "32px",
                 cursor: "pointer"
-            }}><i className="fas fa-arrow-left"></i></div></Link>
+            }}
+                onClick={() => {
+                    router.back()
+                }}
+            ><i className="fas fa-arrow-left"></i></div>
             <div className={`${styles["container"]}`}>
                 <div className={`${styles["area"]} ${styles["text-container"]}`}>
                     <div className={`${styles["name"]}`}>{product.name}</div>
@@ -38,18 +52,8 @@ const ProductPageScaffold: React.FC<Props> = ({ product }) => {
                         <span onClick={() => {
                             // add item to local storage
                             // add item to state
-                            
-                            dispatch(
-                                addItem({
-                                    item: {
-                                        id: product.id,
-                                        amount: 1,
-                                        name: product.name,
-                                        price: product.price,
-                                        img: product.img
-                                    }
-                                })
-                            )
+                            addToCartFeedbackHandler();
+                            productAdder(product);
                         }}>Add to cart!</span>
                         <i className="fas fa-shopping-cart"></i>
                     </div>
@@ -59,6 +63,7 @@ const ProductPageScaffold: React.FC<Props> = ({ product }) => {
                         <img src={product.img} alt="product image" />
                     </div>
                 </div>
+                <Feedback containerId="fb" notification={`${product.name} was added to cart`} show={feedbackShow} />
             </div></> : <h1>Loading...</h1>}
     </>)
 }

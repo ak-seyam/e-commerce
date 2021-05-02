@@ -10,6 +10,7 @@ import { ClickedItemColorContext } from '../_app';
 export default function ProductPage() {
     const router = useRouter();
     const { productName } = router.query;
+    const [title, setTitle] = useState(productName)
     const colorsContext = useContext(ClickedItemColorContext)
     const [product, setProduct] = useState<Product | undefined>(undefined)
 
@@ -17,7 +18,7 @@ export default function ProductPage() {
         const getProductFromName = async () => {
             if (productName) {
                 if (typeof productName === "string")
-                    window.document.title = productName;
+                    setTitle(productName)
                 if (!Array.isArray(productName)) {
                     const prod = await getProductByName(productName)
                     setProduct(prod[0])
@@ -32,6 +33,7 @@ export default function ProductPage() {
             <Head>
                 <link rel="preconnect" href="https://fonts.gstatic.com"></link>
                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"></link>
+                <title>{title}</title>
             </Head>
             <>
                 {colorsContext.clickedImageColors ?

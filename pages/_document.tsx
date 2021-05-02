@@ -13,6 +13,7 @@ class Doc extends Document {
         <body>
           <Main />
           <div id="modal"></div>
+          <div id="fb"></div>
           <NextScript />
         </body>
       </Html>

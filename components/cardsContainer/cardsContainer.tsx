@@ -8,6 +8,7 @@ import Link from "next/link";
 import { isDark, lighen as lighten } from "../../utils/DarkChecker";
 import { useRouter } from "next/router";
 import { useAddingProduct } from "../../hooks/cart/AddProduct";
+import Feedback from "../feedback/Feedback";
 
 type CardsContainerProps = {
   products: Array<Product>;
@@ -17,7 +18,19 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ products }) => {
   const productColorsContextValues = useContext(ClickedItemColorContext);
   const productContext = useContext(ClickedItemContext);
   const router = useRouter();
+  const [feedbackShow, setFeedbackShow] = useState(false)
+  const [feedbackMessage, setFeedbackMessage] = useState("")
   const productAdder = useAddingProduct();
+
+  const feedbackHandler = (feedbackMessage: string) => {
+    setFeedbackMessage(feedbackMessage);
+    setFeedbackShow(true);
+    setTimeout(() => {
+      setFeedbackShow(false);
+      setFeedbackMessage("");
+    }, 2000);
+  }
+
   return (
     <div className={styles["container"]}>
       {products
@@ -33,11 +46,11 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ products }) => {
                   return <div>Loading</div>;
                 }
                 return (
-                  <Link href={`/product/${product.name}`}>
-
+                  <>
                     <Card
                       onAddToCart={() => {
                         productAdder(product)
+                        feedbackHandler(`${product.name} was added to your category`)
                       }}
                       productId={product.id}
                       name={product.name}
@@ -55,13 +68,14 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ products }) => {
                         router.push(`/products/${product.name}`);
                       }}
                     />
-                  </Link>
+                  </>
                 );
               }}
             </Palette>
           );
         })
         : "loading..."}
+      <Feedback containerId="fb" notification={feedbackMessage} show={feedbackShow} />
     </div>
   );
 };
