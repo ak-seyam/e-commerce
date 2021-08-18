@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "test": "jest",
-    "start": "bash ./start.sh",
+    "start": "next start -p $PORT",
     "mock-server": "json-server --watch ./mock-server/db.json -p 3001"
   },
   "dependencies": {
