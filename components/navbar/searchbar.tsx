@@ -1,3 +1,5 @@
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import styles from "./navbar.module.css"
 import search from "./search"
@@ -22,7 +24,7 @@ const SearchBar = ({ ref, zIndex }: searchProps) => {
                     <div className={`${styles["elements"]}`}>
                         <label htmlFor="search">{"Search"}</label>
                         <div className={`${styles["search-icon"]}`}>
-                            <i className={`fas fa-search`}></i>
+							<FontAwesomeIcon icon={faSearch} />
                         </div>
                     </div>
                 </div>

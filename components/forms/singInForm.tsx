@@ -2,6 +2,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import styles from "./forms-styles.module.css";
 import FacebookLogin from "react-facebook-login";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const SigninForm: React.FC = () => {
   return (
@@ -60,7 +62,9 @@ const SigninForm: React.FC = () => {
               <input id="rememberMe" type="checkbox" name="rememberMe" />
               <label htmlFor="rememberMe"> Remember me</label>
             </div>
-            <div  style={{ textAlign: "center", margin: "8px", cursor: "pointer" }}>
+            <div
+              style={{ textAlign: "center", margin: "8px", cursor: "pointer" }}
+            >
               Forgot your password?
             </div>
             <button className="button" type="submit">
@@ -68,17 +72,16 @@ const SigninForm: React.FC = () => {
             </button>
             <FacebookLogin
               appId="123456789"
-              callback={(resp) => {
-              }}
+              callback={(resp) => {}}
               cssClass={`button`}
               icon={
                 <span>
-                  <i className="fab fa-facebook-f"></i>{" "}
+                  <FontAwesomeIcon icon={faFacebook} />{" "}
                 </span>
               }
             />
             <button className="button">
-              <i className="fab fa-google"></i> Login with google
+              <FontAwesomeIcon icon={faGoogle} /> Login with google
             </button>
           </form>
         </>
