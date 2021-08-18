@@ -12,7 +12,6 @@ const SearchBar = ({ ref, zIndex }: searchProps) => {
 
     const handleSearchTermTyped = (e) => {
         setSearchResults(search(e.target.value))
-        console.log("search results are", searchResults);
     }
 
     return (

@@ -69,7 +69,6 @@ const SigninForm: React.FC = () => {
             <FacebookLogin
               appId="123456789"
               callback={(resp) => {
-                console.log(resp);
               }}
               cssClass={`button`}
               icon={

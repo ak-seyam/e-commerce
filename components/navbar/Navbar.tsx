@@ -9,8 +9,15 @@ import Modal from "../Modal/Modal";
 import BestDeals from "./BestDeals";
 import styles from "./navbar.module.css";
 import SearchBar from "./searchbar";
-import { setItems } from "../../features/cart/cartSlice"
+import { setItems } from "../../features/cart/cartSlice";
 import { useRouter } from "next/router";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUserAlt,
+  faBars,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function NavBar() {
   const [navbarActive, setNavbarActive] = useState(false);
@@ -22,31 +29,29 @@ export default function NavBar() {
   const fabContentRef = useRef(null);
   const bestRef = useRef(null);
   const [myModalShow, setMyModalShow] = useState(false);
-  const count = useSelector(itemsCount)
-  const dispatch = useDispatch()
-  const router = useRouter()
+  const count = useSelector(itemsCount);
+  const dispatch = useDispatch();
+  const router = useRouter();
   // const searchbarRef = useRef(null)
 
-  const [localStorageProdsStr, setLocalStorageProdsStr] = useState("")
-  const [countFromLocalStorage, setCountFromLocalStorage] = useState(0)
+  const [localStorageProdsStr, setLocalStorageProdsStr] = useState("");
+  const [countFromLocalStorage, setCountFromLocalStorage] = useState(0);
 
   useEffect(() => {
     if (localStorage)
-      setLocalStorageProdsStr(localStorage.getItem("cart-items") ?? "")
-  }, [])
+      setLocalStorageProdsStr(localStorage.getItem("cart-items") ?? "");
+  }, []);
 
   useEffect(() => {
-
     if (localStorageProdsStr !== "") {
-      const products = JSON.parse(localStorageProdsStr)
-      setCountFromLocalStorage(products.length)
-      dispatch(setItems(products))
+      const products = JSON.parse(localStorageProdsStr);
+      setCountFromLocalStorage(products.length);
+      dispatch(setItems(products));
     }
-  }, [localStorageProdsStr])
+  }, [localStorageProdsStr]);
 
   const handleFabFocus = () => {
     setMenuFocused(true);
-    console.log("clicked focus");
     fabRef.current.className = `${styles["fab"]} ${styles["focused"]}`;
     fabContentRef.current.className = `${styles["fab-content"]} ${styles["focused"]}`;
   };
@@ -96,8 +101,6 @@ export default function NavBar() {
     const _categories = Array.from(categoriesContainer.children);
 
     _categories.forEach((cat) => {
-      console.log("categories", cat.id, id);
-
       if (cat.id === id) {
         cat.className = `${styles["category-button"]} ${styles["hovered"]}`;
       } else {
@@ -115,13 +118,13 @@ export default function NavBar() {
   return (
     <nav className={`${styles["container"]}`}>
       <section
-        className={`${styles["navbar"]} ${navbarActive ? styles["active"] : ""
-          }`}
+        className={`${styles["navbar"]} ${
+          navbarActive ? styles["active"] : ""
+        }`}
       >
         <Image
           onClick={() => {
-            if (router.pathname !== '/')
-              router.push('/')
+            if (router.pathname !== "/") router.push("/");
           }}
           className={`${styles["aligned-element"]} ${styles["logo"]}`}
           src="/logo.png"
@@ -145,9 +148,10 @@ export default function NavBar() {
               setMyModalShow(true);
             }}
           >
-            <i className="fas fa-user-alt"></i>
+            <FontAwesomeIcon icon={faUserAlt} />
           </div>
-          <div className={`${styles["account-service"]}`}
+          <div
+            className={`${styles["account-service"]}`}
             onClick={() => {
               setMyModalShow(true);
             }}
@@ -155,10 +159,7 @@ export default function NavBar() {
             <span style={{ fontSize: "12px" }}>Login</span>
             <b>MyAccount</b>
           </div>
-          <Modal
-            show={myModalShow}
-            onHide={() => setMyModalShow(false)}
-          >
+          <Modal show={myModalShow} onHide={() => setMyModalShow(false)}>
             <SigninForm />
           </Modal>
         </div>
@@ -167,9 +168,11 @@ export default function NavBar() {
             <div
               className={`${styles["aligned-element"]} ${styles["shopping-cart"]}`}
             >
-              <i className="fas fa-shopping-cart"></i>
+              <FontAwesomeIcon icon={faShoppingCart} />
             </div>
-            <div className={`${styles["cart-items-count"]}`}>{count == 0 ? countFromLocalStorage : count}</div>
+            <div className={`${styles["cart-items-count"]}`}>
+              {count == 0 ? countFromLocalStorage : count}
+            </div>
           </div>
         </Link>
       </section>
@@ -177,17 +180,17 @@ export default function NavBar() {
         {loadingCategories
           ? "loading"
           : categories.map((category) => {
-            return (
-              <div
-                key={category.name}
-                id={category.name}
-                className={`${styles["category-button"]}`}
-                onMouseOver={() => handleMouseOver(category.name)}
-              >
-                {category.name}
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={category.name}
+                  id={category.name}
+                  className={`${styles["category-button"]}`}
+                  onMouseOver={() => handleMouseOver(category.name)}
+                >
+                  {category.name}
+                </div>
+              );
+            })}
       </section>
       <div
         style={{ display: categoryItems.length ? "block" : "none" }}
@@ -205,8 +208,13 @@ export default function NavBar() {
         }
       >
         {categoryItems.map((item) => {
-          console.log("item is", item);
-          return <Link href={`/categories/${item}`}><div style={{ cursor: "pointer" }} key={item}>{item}</div></Link>;
+          return (
+            <Link href={`/categories/${item}`}>
+              <div style={{ cursor: "pointer" }} key={item}>
+                {item}
+              </div>
+            </Link>
+          );
         })}
       </div>
       <div className={`${styles["nav-mob"]}`}>
@@ -228,7 +236,7 @@ export default function NavBar() {
               transform: "translate(-50%,-50%)",
             }}
           >
-            <i className="fas fa-bars"></i>
+            <FontAwesomeIcon icon={faBars} />
           </div>
           <div ref={fabContentRef} className={`${styles["fab-content"]}`}>
             <SearchBar zIndex={1500} />

@@ -58,7 +58,6 @@
   box-shadow: var(--shadow);
   transition: 0.3s;
   color: white;
-  font-size: 16px;
 }
 
 .rounded-button:hover {

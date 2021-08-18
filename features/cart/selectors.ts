@@ -11,7 +11,6 @@ export const itemsSum = createSelector(itemsSelector, (items) =>
 
 export const itemsCount = createSelector(itemsSelector, (items) => {
   let total = 0;
-  console.log("items are", items);
   items.forEach((item) => {
     total += item.amount;
   });

@@ -6,11 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "test": "jest",
-    "start": "next start",
-    "mock-server": "json-server --watch ./mock-server/db.json -p 3001",
-	"heroku-postbuild": "yarn build"
+    "start": "bash ./start.sh",
+    "mock-server": "json-server --watch ./mock-server/db.json -p 3001"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "@reduxjs/toolkit": "^1.5.1",
     "axios": "^0.21.1",
     "color-thief-react": "^2.0.11",

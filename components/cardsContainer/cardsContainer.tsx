@@ -35,7 +35,6 @@ const CardsContainer: React.FC<CardsContainerProps> = ({ products }) => {
     <div className={styles["container"]}>
       {products
         ? products.map((product) => {
-          console.log("old price?", product.oldprice);
           return (
             <Palette key={product.id} format="hex" src={product.img} colorCount={4}>
               {({ data, loading, error }) => {
